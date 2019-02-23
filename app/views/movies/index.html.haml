@@ -3,16 +3,16 @@
   Include:
   - @all_ratings.each do |rating|
     = rating
-    = check_box_tag "ratings[#{rating}]", rating,  @keys.include?(rating), :id => "ratings_#{rating}"
+    = check_box_tag "ratings[#{rating}]", rating, @keys.include?(rating), :id => "ratings_#{rating}"
   = submit_tag 'Refresh', :id => "ratings_submit"
 %table#movies
   %thead
     %tr
       %th{class: @title_class}
-        = link_to 'Movie Title', movies_path({:sort_title => true}), id: 'title_header'
+        = link_to 'Movie Title', movies_path({:sort_title => @should_sort}), id: 'title_header'
       %th Rating
       %th{class: @release_date_class}
-        = link_to 'Release Date', movies_path({:sort_release_date => true}), id: 'release_date_header' 
+        = link_to 'Release Date', movies_path({:sort_release_date => @should_sort_rd}), id: 'release_date_header' 
       %th More Info
   %tbody
     - @movies.each do |movie|
